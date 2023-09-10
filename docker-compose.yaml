@@ -1,0 +1,9 @@
+version: "3"
+services:
+  echoip:
+    image: aheadlead/echoip:v1
+    ports:
+      - "${PORT}:8080"
+    environment:
+      - BEARER_TOKEN=${BEARER_TOKEN}
+      - PORT=${PORT}
