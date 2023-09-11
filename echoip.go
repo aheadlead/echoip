@@ -51,8 +51,10 @@ func logHandler(h http.HandlerFunc) http.HandlerFunc {
         duration := end.Sub(start)
 
         ip := strings.Split(r.RemoteAddr, ":")[0]
-        
-        fmt.Printf("Access log: IP %s - %s %s - %v\n", ip, r.Method, r.URL.Path, duration)
+        header_requested_by := r.Header.Get("X-Requested-By")
+
+        fmt.Printf("Access log: IP %s, getIP() %s, X-Requested-By %s - %s %s - %v\n", ip,
+                   getIP(r), header_requested_by, r.Method, r.URL.Path, duration)
     }
 }
 
